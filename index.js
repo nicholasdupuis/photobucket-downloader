@@ -17,12 +17,12 @@ fs.readFile('photobucket.txt', 'utf8', (err, urls) => {
         fileNames.push(url.split('/').splice(-1)[0].replace('.html', '').replace('\r', ''));
     });
 
-    fileNames.forEach(file => {
+    fileNames.forEach((file, index) => {
         const url = `https://abc123.photobucket.com/albums/j243/user_name/${file}`;
         const path = `./images/${file}`;
 
         download(url, path, () => {
-            console.log('Done!')
+            console.log(`${index + 1} of ${fileNames.length} image(s) downloaded!`)
         });
     })
 });
